@@ -30,5 +30,13 @@ class Hangman
 
 	end
 
+	def valid_input?
+		if word.match(/[^a-zA-Z]/)
+			false
+		else
+			true
+		end
+	end
+
 end
 

@@ -42,4 +42,16 @@ class TestHangman < Minitest::Test
 		assert_equal(['B','B','B','B','B','B'], results)	
 	end
 
+	def test_invalid_word_input_false
+		hangman_object = Hangman.new('Hello1')
+		results = hangman_object.valid_input?
+		assert_equal(false, results)	
+	end
+
+	def test_valid_word_input_true
+		hangman_object = Hangman.new('HeLlO')
+		results = hangman_object.valid_input?
+		assert_equal(true, results)	
+	end
+
 end
