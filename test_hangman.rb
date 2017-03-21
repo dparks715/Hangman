@@ -54,4 +54,10 @@ class TestHangman < Minitest::Test
 		assert_equal(true, results)	
 	end
 
+	def test_invalid_symbols_false
+		hangman_object = Hangman.new('Hangman%')
+		results = hangman_object.valid_input?
+		assert_equal(false, results)	
+	end
+
 end
