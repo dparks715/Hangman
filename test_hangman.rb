@@ -60,4 +60,10 @@ class TestHangman < Minitest::Test
 		assert_equal(false, results)	
 	end
 
+	def test_invalid_space_false
+		hangman_object = Hangman.new('Cheese Sandwich')
+		results = hangman_object.valid_input?
+		assert_equal(false, results)	
+	end
+
 end
