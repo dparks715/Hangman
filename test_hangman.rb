@@ -21,11 +21,25 @@ class TestHangman < Minitest::Test
 		assert_equal(['_','_','_','_','_','_','_'], results)	
 	end
 
-	def test_array_elements
+	def test_array_correct_guess_A
 		hangman_object = Hangman.new('hangman')
 		hangman_object.guess_letter('A')
 		results = hangman_object.correct_letters
 		assert_equal(['_','A','_','_','_','A','_'], results)	
+	end
+
+	def test_array_incorrect_guess_J_wrong_count_1
+		hangman_object = Hangman.new('hangman')
+		hangman_object.guess_letter('J')
+		results = hangman_object.wrong_count
+		assert_equal(1, results)
+	end
+
+	def test_array_correct_guess_BBBBBB
+		hangman_object = Hangman.new('bbbbbb')
+		hangman_object.guess_letter('b')
+		results = hangman_object.correct_letters
+		assert_equal(['B','B','B','B','B','B'], results)	
 	end
 
 end

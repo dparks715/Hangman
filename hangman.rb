@@ -15,6 +15,8 @@ class Hangman
 
 	def guess_letter(letter)
 
+		letter = letter.upcase
+
 		if word.include?(letter)
 
 			word.each_char.with_index do |val, pos|
