@@ -25,9 +25,7 @@ post '/pregame' do
 		redirect '/invalid_word'
 	end
 
-	session[:correct_letters] = session[:hangman].correct_letters.join
 	session[:length] = session[:hangman].correct_letters.count
-	session[:wrong] = session[:hangman].wrong_count
 
 	redirect '/main_game'
 
@@ -40,6 +38,8 @@ get '/invalid_word' do
 end
 
 get '/main_game' do
+	session[:correct_letters] = session[:hangman].correct_letters.join
+	session[:wrong] = session[:hangman].wrong_count
 
 	erb :main_game, :locals => {p1: session[:p1], p2: session[:p2], guess_word: session[:guess_word], correct: session[:correct_letters], length: session[:length], wrong: session[:wrong]}
 
