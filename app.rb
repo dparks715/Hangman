@@ -5,6 +5,12 @@ enable :sessions
 
 get '/' do
 
+	erb :warning
+
+end
+
+get '/welcome' do
+
 	erb :welcome
 
 end
