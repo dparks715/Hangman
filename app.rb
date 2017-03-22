@@ -41,6 +41,10 @@ get '/main_game' do
 	session[:correct_letters] = session[:hangman].correct_letters.join
 	session[:wrong] = session[:hangman].wrong_count
 
+	if session[:hangman].wrong_count == 8
+		redirect '/lose'
+	end
+
 	erb :main_game, :locals => {p1: session[:p1], p2: session[:p2], guess_word: session[:guess_word], correct: session[:correct_letters], length: session[:length], wrong: session[:wrong]}
 
 end
@@ -51,8 +55,6 @@ post '/make_guess' do
 
 	if session[:hangman].correct_letters.include?('_')
 		redirect '/main_game'
-	elsif session[:hangman].wrong_count == 8
-		redirect '/lose'
 	else
 		redirect '/winner'
 	end
