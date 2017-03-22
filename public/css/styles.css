@@ -1,0 +1,19 @@
+#landing {
+	background-color: black;
+    text-align: center;
+}
+
+.warn {
+	color: yellow;
+    text-align: center;
+}
+
+.link_size {
+	font-size: 32px;
+}
+
+.landing_table {
+	border-spacing: 50px 0;
+	margin-left:auto; 
+    margin-right:auto;
+}
