@@ -27,6 +27,7 @@ post '/pregame' do
 
 	session[:correct_letters] = session[:hangman].correct_letters.join
 	session[:length] = session[:hangman].correct_letters.count
+	session[:wrong] = session[:hangman].wrong_count
 
 	redirect '/main_game'
 
@@ -40,6 +41,32 @@ end
 
 get '/main_game' do
 
-	erb :main_game, :locals => {p1: session[:p1], p2: session[:p2], guess_word: session[:guess_word], correct: session[:correct_letters], length: session[:length]}
+	erb :main_game, :locals => {p1: session[:p1], p2: session[:p2], guess_word: session[:guess_word], correct: session[:correct_letters], length: session[:length], wrong: session[:wrong]}
+
+end
+
+post '/make_guess' do
+	session[:letter] = params[:letter]
+	session[:hangman].guess_letter(session[:letter])
+
+	if session[:hangman].correct_letters.include?('_')
+		redirect '/main_game'
+	elsif session[:hangman].wrong_count == 8
+		redirect '/lose'
+	else
+		redirect '/winner'
+	end
+
+end
+
+get '/winner' do
+
+	erb :winner
+
+end
+
+get '/lose' do
+
+	erb :lose_game
 
 end

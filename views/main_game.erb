@@ -1,4 +1,9 @@
 <h2><%=p2%>, guess a letter that could be in the word <%=p1%> picked.</h2>
 <p>The word is <%=length%> characters long.</p>
+<form action="/make_guess" method="post">
+	<input type="text" name="letter" pattern="[A-Za-z]{1}">
+	<input type="submit" value='Guess!'>
+</form> 
 
+<p>8 wrong guesses and you lose. You have guessed wrong <%=wrong%> times.
 <p>Correct guesses will appear here - <%=correct%></p>
