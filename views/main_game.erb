@@ -1,6 +1,8 @@
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
 <h2><%=p2%>, guess a letter that could be in the word <%=p1%> picked.</h2>
 <p>The word is <%=length%> characters long.</p>
-<p>8 wrong guesses and the game is over.</p>
+<p>6 wrong guesses and the game is over.</p>
 <form action="/make_guess" method="post">
 	<input type="text" name="letter" pattern="[A-Za-z]{1}">
 	<input type="submit" value='Guess!'>
@@ -18,9 +20,5 @@
 	<img src='/img/hangman4.png'>
 <% elsif wrong == 5%>
 	<img src='/img/hangman5.png'>
-<% elsif wrong == 6%>
-	<img src='/img/hangman6.png'>
-<% else %>
-	<img src='/img/hangman7.png'>
 <% end %>
-<p>Correct guesses will appear here - <%=correct%></p>
+<p class='font_size'>Correct guesses will appear here - <%=correct%></p>

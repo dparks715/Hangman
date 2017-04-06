@@ -10,7 +10,7 @@ class Hangman
 
 	#function to make a container array for guessed letters
 	def container
-		container = Array.new(word.length, '_')
+		container = Array.new(word.length, '_ ')
 	end
 
 	def guess_letter(letter)

@@ -5,12 +5,6 @@ enable :sessions
 
 get '/' do
 
-	erb :warning
-
-end
-
-get '/welcome' do
-
 	erb :welcome
 
 end
@@ -47,10 +41,6 @@ get '/main_game' do
 	session[:correct_letters] = session[:hangman].correct_letters.join
 	session[:wrong] = session[:hangman].wrong_count
 
-	if session[:hangman].wrong_count == 8
-		redirect '/lose'
-	end
-
 	erb :main_game, :locals => {p1: session[:p1], p2: session[:p2], guess_word: session[:guess_word], correct: session[:correct_letters], length: session[:length], wrong: session[:wrong]}
 
 end
@@ -59,22 +49,24 @@ post '/make_guess' do
 	session[:letter] = params[:letter]
 	session[:hangman].guess_letter(session[:letter])
 
-	if session[:hangman].correct_letters.include?('_')
+	if session[:hangman].wrong_count == 6
+
+		message = 'Oh no, you lost. :('
+		lose = true
+
+		erb :hm_game_over, :locals => {lose: lose, message: message, word: session[:guess_word]}
+
+	elsif session[:hangman].correct_letters.include?('_ ')
+
 		redirect '/main_game'
+
 	else
-		redirect '/winner'
+
+		message = 'Congrats! You won!'
+		lose = false
+
+		erb :hm_game_over, :locals => {lose: lose, message: message, word: session[:guess_word]}
+
 	end
-
-end
-
-get '/winner' do
-
-	erb :winner
-
-end
-
-get '/lose' do
-
-	erb :lose_game
 
 end

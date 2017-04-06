@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+
+<p><%=message%></p>
+<p>The word was <%=word%>.</p>
+	<% if lose == true %>
+		<img src='/img/hangman8.png'>
+	<% else %>
+		<img src='/img/hangman9.png'>
+	<% end %>
+
+
+<a class='font_size' href='/'>Play Again?</a>
